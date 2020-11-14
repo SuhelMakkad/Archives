@@ -1,0 +1,22 @@
+body {
+	background-color: black;
+}
+.dark {
+	background-color: #4d4d4d4d;
+	color: white;
+}
+.row-btn {
+	margin-top: 60px; 
+}
+a.btn:hover {
+	background-color: #1f1824;
+	color: white;
+	width: 110%;
+	height: 110%;
+	font-size: 1.1vw;
+	align-self: center;
+	//#bb86fc;
+}
+.btn-back {
+	background-color: #bb86fc;
+}
