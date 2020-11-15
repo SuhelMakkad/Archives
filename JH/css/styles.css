@@ -11,9 +11,8 @@ body {
 a.btn:hover {
 	background-color: #1f1824;
 	color: white;
-	width: 110%;
-	height: 110%;
-	font-size: 1.1vw;
+	transform: scale(1.1);
+	box-shadow: 0 0 10px rgba(200, 200, 200, 0.5);
 	align-self: center;
 	//#bb86fc;
 }
