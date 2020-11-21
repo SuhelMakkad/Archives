@@ -5,14 +5,24 @@ body {
 	background-color: #4d4d4d4d;
 	color: white;
 }
-.row-btn {
-	margin-top: 60px; 
+
+
+a {
+	margin-bottom: 20px;
 }
-a.btn:hover{
+
+.row-btn {
+	margin-top: 60px;
+}
+
+.btn:hover{
 	background-color: #1f1824;
 	color: white;
 	transform: scale(1.1);
 	box-shadow: 0 0 10px rgba(200, 200, 200, 0.5);
 	align-self: center;
-	//#bb86fc;
+	/* //#bb86fc; */
+}
+.navbar-toggler {
+	background-color: #bb86fc;
 }
