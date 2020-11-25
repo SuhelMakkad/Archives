@@ -1,6 +1,7 @@
 body {
 	background-color: black;
 }
+
 .dark {
 	background-color: #4d4d4d4d;
 	color: white;
@@ -9,6 +10,10 @@ body {
 
 a {
 	margin-bottom: 20px;
+}
+
+.btn {
+	width: 50%;
 }
 
 .row-btn {
