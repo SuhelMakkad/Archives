@@ -1,0 +1,60 @@
+body {
+    font-family: 'poppins', 'Arial';
+    display: grid;
+    height: 100vh;
+    place-content: center;
+    background-color: #DBDBDB;
+    z-index: -7;
+}
+h1, p {
+    margin: 0;
+}
+
+.card {
+    width: 30%;
+    min-width: 400px;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+    padding: 1em 3em;
+}
+
+.card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 20%;
+    background-color: white;
+    z-index: -2;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #6B696B;
+    z-index: -1;
+}
+
+p {
+    clip-path: circle(0% at 100% 0);
+    transform: translateX(50px);
+    padding-top: 2em;
+    color: snow;
+}
+
+.bar {
+    position: absolute;
+    top: 6.37em;
+    left: 3em;
+    width: 5px;
+    height: 48%;
+    background-color: #DBDBDB;
+    z-index: 0;
+    border-radius: 50px;
+}

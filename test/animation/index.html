@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card" id="card">
+            <h1>This is a card with text</h1>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolores culpa quasi voluptatum obcaecati asperiores sit nulla soluta nostrum similique quaerat, eaque distinctio tempore ex fugit enim ut cumque reprehenderit voluptatibus.</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/CSSRulePlugin.min.js"></script>
+    <script>
+        var card = document.getElementById('card');
+        var after = CSSRulePlugin.getRule(".card::after");
+        var before = CSSRulePlugin.getRule(".card::before");
+        var pbefore = CSSRulePlugin.getRule("p::before");
+        var tl = gsap.timeline({defaults: {ease: "power2.inout"}});
+
+        tl.to(before, {
+            width: '100%'
+        });
+        tl.to(after, {
+            width: '100%'
+        }, '-=0.2');
+        tl.to('h1', {
+            color: 'white'
+        },'-=.7');
+        tl.to('p', {
+            'clipPath': 'circle(160% at 100% 0)',
+            'transform': 'translateX(0)'
+        });
+        tl.pause();
+
+        card.addEventListener('mouseenter', () => {
+            tl.play();
+        });
+        card.addEventListener('mouseleave', () => {
+            tl.reverse();
+        });
+        
+
+    </script>
+</body>
+</html>

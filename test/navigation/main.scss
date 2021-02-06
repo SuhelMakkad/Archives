@@ -1,0 +1,143 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #f7c0c0;
+  font-family: "Montserrat", sans-serif;
+}
+
+#bar {
+  position: sticky;
+  top: 0;
+}
+
+.navigation {
+  background-color: #14213d;
+  padding: 0 5rem;
+  height: 100%;
+
+  .navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .nav-header {
+      padding: 1rem 0rem;
+      font-weight: 900;
+      color: #fca311;
+      font-size: 1.2rem;
+    }
+
+    ul.nav-list {
+      overflow-x: hidden;
+      display: flex;
+      padding: 1rem 0rem;
+
+      li.nav-items {
+        list-style-type: none;
+        padding-left: 5rem;
+        a {
+          text-decoration: none;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+.menu {
+  display: none;
+}
+@media (max-width: 775px) {
+  .navigation {
+    position: relative;
+    padding: 0 2rem;
+
+    .navbar {
+      ul.nav-list {
+        transform: translateY(0px);
+        width: 100%;
+        flex-direction: column;
+        position: absolute;
+        left: 0;
+        top: calc(100% - 16px);
+        transform: translateY(-500px);
+        transition: transform 0.5s ease-in-out;
+        overflow-x: hidden;
+        z-index: -1;
+
+        li.nav-items {
+          padding: 1rem;
+          background-color: violet;
+          text-align: center;
+        }
+      }
+    }
+  }
+  .navbar {
+    .menu {
+      display: block;
+      position: absolute;
+      top: 1rem;
+      right: 2rem;
+      cursor: pointer;
+
+      .line1,
+      .line2,
+      .line3 {
+        width: 30px;
+        height: 5px;
+        background-color: white;
+        border-radius: 10px;
+      }
+
+      .line2,
+      .line3 {
+        margin-top: 4px;
+      }
+    }
+  }
+
+  .open {
+    .menu {
+      .line1 {
+        transform: translateX(10px) rotate(-45deg) translateY(7px);
+        width: 15px;
+        transition: all 0.2s ease-in-out;
+      }
+      .line2 {
+        opacity: 0;
+        transition: All 0.1s ease-in-out;
+      }
+      .line3 {
+        transform: translateX(10px) rotate(45deg) translateY(-7px);
+        width: 15px;
+        transition: All 0.2s ease-in-out;
+      }
+    }
+  }
+
+  .close {
+    .menu {
+      .line1 {
+        transform: translateX(0px) rotate(0deg) translateY(0px);
+        width: 30px;
+        transition: All 0.2s ease-in-out;
+      }
+      .line2 {
+        opacity: 1;
+        transition: All 0.2s ease-in-out;
+      }
+      .line3 {
+        transform: translateX(0px) rotate(0deg) translateY(0px);
+        width: 30px;
+        transition: All 0.2s ease-in-out;
+      }
+    }
+  }
+}

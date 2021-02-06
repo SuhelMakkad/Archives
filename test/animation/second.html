@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="card" id="card">
+        <h1>Lorem ipsum dolor sit</h1>
+        <p>Lorem ipsum dolor, sit amet conbusdam hic sed consequuntur quasi delectus quidem vel architecto, soluta expedita. Corporis aliquid odit consequatur corrupti, ex vel dolores possimus, suscipit nihil distinctio quae, nobis mollitia iusto placeat laboriosam. Earum, culpa reprehenderit!</p>
+        <div class="bar" id="bar"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/CSSRulePlugin.min.js"></script>
+    <script>
+        var card = document.getElementById('card');
+        var bar = document.getElementById('bar');
+        var before = CSSRulePlugin.getRule('.card::before');
+        var after = CSSRulePlugin.getRule('.card::after');
+        var tl = gsap.timeline({defaluts: {ease: "power2.inout"}});
+
+        tl.to(after, {
+            height: '100%'
+        });
+        tl.to(before, {
+            height: '100%'
+        }, "-=.2");
+        tl.to("h1", {
+            color: 'white'
+        }, '-=0.3');
+        tl.to('p', {
+            'clipPath': 'circle(160% at 100% 0)',
+            'transform': 'translateX(30px)'
+        });
+        tl.to(bar, {
+            'backgroundColor': 'gray'
+        }, '-=.8');
+        tl.pause();
+
+        card.addEventListener('mouseenter', () => {
+            tl.play();
+        });
+        card.addEventListener('mouseleave', () => {
+            tl.reverse();
+        });
+        
+    </script>
+</body>
+</html>
