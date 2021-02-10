@@ -1,6 +1,5 @@
-/* set up XMLHttpRequest */
 const url = "./MK-Milap-Candidates.xlsx"; /* src link here */
-const oReq = new XMLHttpRequest();
+const oReq = new XMLHttpRequest(); /* set up XMLHttpRequest */
 
 oReq.open("GET", url, true);
 oReq.responseType = "arraybuffer";
@@ -19,7 +18,7 @@ oReq.onload = function(e) {
   /* Call XLSX */
   let workbook = XLSX.read(bstr, {type:"binary"});
 
-  /* DO SOMETHING WITH workbook HERE */
+  /* For multiple sheets in one excel file */
   let first_sheet_name = workbook.SheetNames[0];
 
   /* Get worksheet */
@@ -42,14 +41,18 @@ oReq.onload = function(e) {
 
   //soring according to toggle
   $("#id").click(() => {
+    
+    let defaultCellNames = getDetails(numberOfRows, worksheet);
+    let newCellNames;
 
     let check = $("#id").prop("checked");
-    if(check) {
+    console.log(check);
+    if(check == true) {
       sortType = "id";
+      newCellNames =  sortDetails(sortType, cellNames, worksheet);
     } else {
-      sortType = "";
+      newCellNames = defaultCellNames;
     }
-    let newCellNames =  sortDetails(sortType, cellNames, worksheet);
 
     //adding details to html
     addDetailsAll(topHeadings, headings, newCellNames, worksheet);
@@ -61,13 +64,16 @@ oReq.onload = function(e) {
   
   $("#mail").click(() => {
 
+    let defaultCellNames = getDetails(numberOfRows, worksheet);
+    let newCellNames;
+
     let check = $("#mail").prop("checked");
-    if(check) {
+    if(check == true) {
       sortType = "mail";
+      newCellNames =  sortDetails(sortType, cellNames, worksheet);
     } else {
-      sortType = "";
+      newCellNames = defaultCellNames;
     }
-    let newCellNames =  sortDetails(sortType, cellNames, worksheet);
 
     //adding details to html
     addDetailsAll(topHeadings, headings, newCellNames, worksheet);
@@ -79,13 +85,16 @@ oReq.onload = function(e) {
 
   $("#femail").click(() => {
 
+    let defaultCellNames = getDetails(numberOfRows, worksheet);
+    let newCellNames;
+
     let check = $("#femail").prop("checked");
-    if(check) {
+    if(check == true) {
       sortType = "femail";
+      newCellNames =  sortDetails(sortType, cellNames, worksheet);
     } else {
-      sortType = "";
+      newCellNames = defaultCellNames;
     }
-    let newCellNames =  sortDetails(sortType, cellNames, worksheet);
 
     //adding details to html
     addDetailsAll(topHeadings, headings, newCellNames, worksheet);
@@ -100,6 +109,7 @@ oReq.send();
 
 
 function sortDetails(sortType, cellNames, worksheet) {
+
 
   let idArray = [];
   let mailArary = [];
@@ -159,7 +169,7 @@ function sortDetails(sortType, cellNames, worksheet) {
     return femailArray;
   } else {
 
-    return cellNames;
+    return console.log("Somting Wemt wrong during sorting");;
   }
 
 }

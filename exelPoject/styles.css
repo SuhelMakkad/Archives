@@ -138,10 +138,11 @@ input:checked + .lable div {
   color: #508188;
   font-size: 1rem;
   padding: 1.5rem;
+  padding-top: 0;
 }
 
 .container {
-  font-size: clamp(16px, 4vw, 35px);
+  font-size: clamp(16px, 3vw, 22px);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -164,7 +165,7 @@ input:checked + .lable div {
   text-align: center;
   margin: 0;
   padding: 0.5rem 0.5rem;
-  font-size: clamp(24px, 4vw, 35px);
+  font-size: clamp(24px, 3vw, 26px);
 }
 
 .top-heading-1 {
@@ -198,6 +199,40 @@ hr {
 }
 
 .entry {
-  margin: 0 1.5rem 3rem 1.5rem;
+  padding: 0 1.5rem 3rem 1.5rem;
+  overflow-x: hidden;
+}
+
+@media (min-width: 600px) {
+  .navbar {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .navbar .heading {
+    width: 50%;
+    text-align: left;
+    padding-left: 1.5rem;
+  }
+  .navbar .sort-by {
+    width: 50%;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    padding-right: 3.2rem;
+  }
+  .count {
+    font-size: 1.2rem;
+  }
+  .count p {
+    display: inline-block;
+    padding-left: 0.5rem;
+  }
 }
 /*# sourceMappingURL=styles.css.map */
