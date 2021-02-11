@@ -13,31 +13,77 @@
 </head>
 <body>
     <nav class="navbar">
+
         <div class="heading">
             <h1>MILAP CANDIDATES</h1>
         </div>
-        <div class="sort-by">
 
-            <div class="for-id">
-                <input type="checkbox" id="id">
-                <label for="id" class="lable" id="label-id">
-                    <div></div>
-                </label>
+        <div class="filter-dropdown">
+
+            <div class="sort-list" id="sort">
+    
+                <ul class="main-list">
+                    <li> <span id="sort-by">Sort by</span>
+                        <ul class="sub-list">
+                            <li>Id</li>
+    
+                            <li>Age
+                                <ul class="sub-sub-list left">
+                                    <li>Ascending</li>
+                                    <li>Descending</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <span class="arrows"></span>
+                    </li>
+                </ul>
+    
             </div>
-            <div class="for-mail">
-                <input type="checkbox" id="mail">
-                <label for="mail" class="lable" id="label-mail">
-                    <div></div>
-                </label>
+
+            
+            <div class="sort-list" id="filter">
+    
+                <ul class="main-list">
+                    <li> <span id="filter-by">Filter by</span> 
+                        <ul class="sub-list">
+    
+                            <li>Gender
+                                <ul class="sub-sub-list right">
+                                    <li>Male</li>
+                                    <li>Female</li>
+                                </ul>
+                            </li>
+                            
+                            <li>Type
+                                <ul class="sub-sub-list right">
+                                    <li>Kutchi</li>
+                                    <li>Bavisi</li>
+                                    <li>Halai</li>
+                                </ul>
+                            </li>
+                            <li>Status
+                                <ul class="sub-sub-list right">
+                                    <li>Unmarried</li>
+                                    <li>Divorcee</li>
+                                    <li>Widow</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <span class="arrows"></span>
+                    </li>
+                </ul>
+    
             </div>
-            <div class="for-femail">
-                <input type="checkbox" id="femail">
-                <label for="femail" class="lable" id="label-femail">
-                    <div></div>
-                </label>
-            </div>
+    
+            <!-- <div class="search-box">
+                <input type="text" placeholder="search here" class="search-input">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </div> -->
         </div>
+
     </nav>
+
+    
     
     <div class="count">
         <h2>Number of Candiadtes: <p></p> </h2>

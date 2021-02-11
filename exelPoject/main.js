@@ -39,70 +39,119 @@ oReq.onload = function(e) {
   //adding details to html
   addDetailsAll(topHeadings, headings, cellNames, worksheet);
 
+  // //search 
+  // $(".search-input").change( (e) => {
+  //   let searchTerm = $(".search-input").val();
+  //   console.log(searchTerm);
+  //   search(searchTerm, cellNames, worksheet);
+  // });
+
   //soring according to toggle
-  $("#id").click(() => {
-    
-    let defaultCellNames = getDetails(numberOfRows, worksheet);
-    let newCellNames;
 
-    let check = $("#id").prop("checked");
-    console.log(check);
-    if(check == true) {
-      sortType = "id";
-      newCellNames =  sortDetails(sortType, cellNames, worksheet);
-    } else {
-      newCellNames = defaultCellNames;
-    }
+  $("li").click( (e) => {
+    let sortBy = e.target.innerText.charAt(0) + e.target.innerText.charAt(1);
 
+    if(sortBy === "Id") {
+    sortType = "id";
+    newCellNames =  sortDetails(sortType, cellNames, worksheet);
     //adding details to html
     addDetailsAll(topHeadings, headings, newCellNames, worksheet);
-
     $(".count p").html(newCellNames.length);
+    cellNames = newCellNames;
 
-    
-  });
-  
-  $("#mail").click(() => {
-
-    let defaultCellNames = getDetails(numberOfRows, worksheet);
-    let newCellNames;
-
-    let check = $("#mail").prop("checked");
-    if(check == true) {
-      sortType = "mail";
-      newCellNames =  sortDetails(sortType, cellNames, worksheet);
-    } else {
-      newCellNames = defaultCellNames;
     }
 
+    if(sortBy === "Ma") {
+    sortType = "male";
+    newCellNames =  sortDetails(sortType, cellNames, worksheet);
     //adding details to html
     addDetailsAll(topHeadings, headings, newCellNames, worksheet);
-
     $(".count p").html(newCellNames.length);
-
-
-  });
-
-  $("#femail").click(() => {
-
-    let defaultCellNames = getDetails(numberOfRows, worksheet);
-    let newCellNames;
-
-    let check = $("#femail").prop("checked");
-    if(check == true) {
-      sortType = "femail";
-      newCellNames =  sortDetails(sortType, cellNames, worksheet);
-    } else {
-      newCellNames = defaultCellNames;
     }
 
+    if(sortBy === "Fe") {
+    sortType = "female";
+    newCellNames =  sortDetails(sortType, cellNames, worksheet);
     //adding details to html
     addDetailsAll(topHeadings, headings, newCellNames, worksheet);
-
     $(".count p").html(newCellNames.length);
+    }
 
+    if(sortBy === "As") {
+    sortType = "ascending";
+    newCellNames =  sortDetails(sortType, cellNames, worksheet);
+    //adding details to html
+    addDetailsAll(topHeadings, headings, newCellNames, worksheet);
+    $(".count p").html(newCellNames.length);
+    cellNames = newCellNames;
+    }
+
+    if(sortBy === "De") {
+    sortType = "descending"; 
+    newCellNames =  sortDetails(sortType, cellNames, worksheet);
+    //adding details to html
+    addDetailsAll(topHeadings, headings, newCellNames, worksheet);
+    $(".count p").html(newCellNames.length);
+    cellNames = newCellNames;
+    }
+
+    if(sortBy === "Ku") { 
+    sortType = "kutchi";
+    console.log(sortType);
+    newCellNames =  sortDetails(sortType, cellNames, worksheet);
+    //adding details to html
+    addDetailsAll(topHeadings, headings, newCellNames, worksheet);
+    $(".count p").html(newCellNames.length);
+    }
+
+    if(sortBy === "Ba") { 
+    sortType = "bavisi";
+    console.log(sortType);
+    newCellNames =  sortDetails(sortType, cellNames, worksheet);
+    //adding details to html
+    addDetailsAll(topHeadings, headings, newCellNames, worksheet);
+    $(".count p").html(newCellNames.length);
+    }
+
+    if(sortBy === "Ha") { 
+    sortType = "halai";
+    console.log(sortType);
+    newCellNames =  sortDetails(sortType, cellNames, worksheet);
+    //adding details to html
+    addDetailsAll(topHeadings, headings, newCellNames, worksheet);
+    $(".count p").html(newCellNames.length);
+    }
+
+    if(sortBy === "Un") { 
+    sortType = "unmarried";
+    console.log(sortType);
+    newCellNames =  sortDetails(sortType, cellNames, worksheet);
+    //adding details to html
+    addDetailsAll(topHeadings, headings, newCellNames, worksheet);
+    $(".count p").html(newCellNames.length);
+    }
+
+    if(sortBy === "Di") { 
+    sortType = "divorcee";
+    console.log(sortType);
+    newCellNames =  sortDetails(sortType, cellNames, worksheet);
+    //adding details to html
+    addDetailsAll(topHeadings, headings, newCellNames, worksheet);
+    $(".count p").html(newCellNames.length);
+    }
+
+    if(sortBy === "Wi") { 
+    sortType = "widow";
+    console.log(sortType);
+    newCellNames =  sortDetails(sortType, cellNames, worksheet);
+    //adding details to html
+    addDetailsAll(topHeadings, headings, newCellNames, worksheet);
+    $(".count p").html(newCellNames.length);
+    }
 
   });
+
+
 
 }
 oReq.send();
@@ -112,16 +161,17 @@ function sortDetails(sortType, cellNames, worksheet) {
 
 
   let idArray = [];
-  let mailArary = [];
-  let femailArray = [];
+  let birthYear = [];
+  let tempArray = [];
+  let ageArray = [];
   let temp;
   let tempCellName;
+  let tempCellName2;
   let NewCellNames = cellNames;
 
-  if(sortType === "id") { //according to ids
-
-    $('#mail').prop('checked', false);
-    $('#femail').prop('checked', false);
+  if(sortType === "id") { //according to ids   
+    $("#sort-by").text("Id");
+    $("#filter-by").text("Filter by");
 
     for(let i = 0; i < (cellNames.length - 1); i++) {
       idArray.push(checkUndefined(worksheet[cellNames[i][0]]).v);
@@ -143,30 +193,132 @@ function sortDetails(sortType, cellNames, worksheet) {
 
     return NewCellNames;
 
-  } else if(sortType === "mail") { //showing inly mail
-
-    $('#id').prop('checked', false);
-    $('#femail').prop('checked', false);
+  } else if(sortType === "male") { //showing only male
+    $("#filter-by").text("Male");
     
     for(let i = 0; i < (cellNames.length - 1); i++) {
       let gender = checkUndefined(worksheet[cellNames[i][1]]).v.charAt(0);
       if( gender == "M") {
-        mailArary.push( cellNames[i] );
+        tempArray.push( cellNames[i] );
       }
     }
-    return mailArary;
-  } else if(sortType === "femail") { //showing inly mail
+    return tempArray;
+  } else if(sortType === "female") { 
+    $("#filter-by").text("Female");
 
-    $('#id').prop('checked', false);
-    $('#mail').prop('checked', false);
-    
     for(let i = 0; i < (cellNames.length - 1); i++) {
       let gender = checkUndefined(worksheet[cellNames[i][1]]).v.charAt(0);
       if( gender == "F") {
-        femailArray.push( cellNames[i] );
+        tempArray.push( cellNames[i] );
       }
     }
-    return femailArray;
+    return tempArray;
+  } else if(sortType === "ascending") { 
+    $("#sort-by").text("Ascending");
+    $("#filter-by").text("Filter by");
+    
+    for(let i = 0; i < (cellNames.length - 1); i++) {
+      birthYear.push(checkUndefined(worksheet[cellNames[i][3]]).v);
+    }
+
+    for (let a = 0; a < (birthYear.length - 1); a++) {
+      for (let b = a + 1; b < birthYear.length; b++) {
+        if (birthYear[b] < birthYear[a]) {
+          tempCellName2 = NewCellNames[a]; //shorting cell names on basis of id
+          NewCellNames[a] = NewCellNames[b];
+          NewCellNames[b] = tempCellName2;
+    
+          temp = birthYear[a]; //shorting id 
+          birthYear[a] = birthYear[b]; 
+          birthYear[b] = temp; 
+          }     
+        }
+      }
+    return NewCellNames;
+  } else if(sortType === "descending") { 
+    $("#sort-by").text("Descending");
+    $("#filter-by").text("Filter by");
+    
+    for(let i = 0; i < (cellNames.length - 1); i++) {
+      birthYear.push(checkUndefined(worksheet[cellNames[i][3]]).v);
+    }
+
+    for (let a = 0; a < (birthYear.length - 1); a++) {
+      for (let b = a + 1; b < birthYear.length; b++) {
+        if (birthYear[b] > birthYear[a]) {
+          tempCellName2 = NewCellNames[a]; //shorting cell names on basis of id
+          NewCellNames[a] = NewCellNames[b];
+          NewCellNames[b] = tempCellName2;
+    
+          temp = birthYear[a]; //shorting id 
+          birthYear[a] = birthYear[b]; 
+          birthYear[b] = temp; 
+          }     
+        }
+      }
+    return NewCellNames;
+  } else if(sortType === "kutchi") { 
+    $("#filter-by").text("Kutchi");
+
+    for(let i = 0; i < (cellNames.length - 1); i++) {
+      let type = checkUndefined(worksheet[cellNames[i][2]]).v.charAt(0);
+      if( type == "K") {
+        tempArray.push( cellNames[i] );
+      }
+    }
+    return tempArray;
+  } else if(sortType === "bavisi") {  
+    $("#filter-by").text("Bavisi");
+
+    for(let i = 0; i < (cellNames.length - 1); i++) {
+      let type = checkUndefined(worksheet[cellNames[i][2]]).v.charAt(0) + checkUndefined(worksheet[cellNames[i][2]]).v.charAt(1);
+      if( type === "Ba") {
+        tempArray.push( cellNames[i] );
+      } else if( type === "Kh") {
+        tempArray.push( cellNames[i] );
+      }
+    }
+    return tempArray;
+  } else if(sortType === "halai") {  
+    $("#filter-by").text("Halai");
+
+    for(let i = 0; i < (cellNames.length - 1); i++) {
+      let type = checkUndefined(worksheet[cellNames[i][2]]).v.charAt(0);
+      if( type == "H") {
+        tempArray.push( cellNames[i] );
+      }
+    }
+    return tempArray;
+  } else if(sortType === "unmarried") { 
+    $("#filter-by").text("Unmarried");
+
+    for(let i = 0; i < (cellNames.length - 1); i++) {
+      let status = checkUndefined(worksheet[cellNames[i][4]]).v.charAt(0);
+      if( status == "U") {
+        tempArray.push( cellNames[i] );
+      }
+    }
+    return tempArray;
+  } else if(sortType === "divorcee") { 
+    $("#filter-by").text("Divorcee");
+
+    for(let i = 0; i < (cellNames.length - 1); i++) {
+      let status = checkUndefined(worksheet[cellNames[i][4]]).v.charAt(0);
+      if( status == "D") {
+        tempArray.push( cellNames[i] );
+      }
+    }
+    return tempArray;
+  } else if(sortType === "widow") { 
+    $("#filter-by").text("Widow");
+
+    for(let i = 0; i < (cellNames.length - 1); i++) {
+      let status = checkUndefined(worksheet[cellNames[i][4]]).v.charAt(0);
+      if( status == "W") {
+        tempArray.push( cellNames[i] );
+      }
+    }
+    return tempArray;
   } else {
 
     return console.log("Somting Wemt wrong during sorting");;
@@ -261,42 +413,27 @@ function getDetails(length, worksheet) {
   return nameOfCells;
 }
 
-function checkGender(cellNames, worksheet) {
-  for(let i = 0; i < (cellNames.length - 1); i++) {
-    if( checkUndefined(worksheet[cellNames[i][1]]).v == "Female (સ્ત્રી)") {
-      console.log("femail");
-      $(".container").addClass("pink");
-    } else if ( checkUndefined(worksheet[cellNames[i][1]]).v == "Male (પુરુષ)") {
-      console.log("mail");
-      $(".container").addClass("blue");
-    } else {
-      console.log("Empty");
-    }
-  }
-}
 
-function search(searchText, cellNames, worksheet) {
+// function search(searchText, cellNames, worksheet) {
 
-  //adding details
-  let answer;
-  let error;
-  let matchTo;
+//   //adding details
+//   let answer;
+//   let error;
+//   let matchTo;
 
-  outer_loop: 
-  for(let i = 0; i < (cellNames.length - 1); i++) {
-    for(let j = 0; j < 16; j++) {
-      matchTo = checkUndefined(worksheet[cellNames[i][j]]).v;
-      let re = new RegExp(matchTo, '/');
-      if((searchText).match(/re/) ) {
-        answer = "Match found";
-        console.log(i , j + " " + "done");
-        break outer_loop;
-      }else { 
-        answer = "Error";
-      }
+//   outer_loop: 
+//   for(let i = 0; i < (cellNames.length - 1); i++) {
+//     for(let j = 0; j < 16; j++) {
+//       matchTo = "" + checkUndefined(worksheet[cellNames[i][j]]).v + "";
+//       if( searchText == matchTo.split(" ") ) {
+//         answer = "Match found";
+//         console.log(i , j , "done");
+//         break outer_loop;
+//       }else { 
+//         answer = "Error";
+//       }
       
-    }
-  }
-  console.log(searchText, answer);
-}
-
+//     }
+//   }
+//   console.log(searchText, answer);
+// }
