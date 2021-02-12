@@ -225,8 +225,41 @@ hr {
 }
 
 .entry {
-  padding: 0 1rem 2.5rem 1rem;
+  margin: 0 1rem 2.5rem 1rem;
   overflow-x: hidden;
+}
+
+@media (min-width: 550px) {
+  .heading {
+    width: 50%;
+    align-self: center;
+    text-align: left;
+    padding-left: 1.5rem;
+  }
+
+  .count {
+    font-size: 1.2rem;
+
+    p {
+      display: inline-block;
+      padding-left: 0.5rem;
+    }
+  }
+  .all-candidates-details {
+    .entry {
+      .heading-details,
+      .heading-details-2,
+      .heading-details-3 {
+        display: flex;
+        flex-wrap: wrap;
+
+        .container {
+          border: 1px solid snow;
+          width: 50%;
+        }
+      }
+    }
+  }
 }
 
 @media (min-width: 650px) {
@@ -250,17 +283,81 @@ hr {
       margin-right: 1rem;
     }
   }
+}
 
-  .count {
-    font-size: 1.2rem;
-
-    p {
-      display: inline-block;
-      padding-left: 0.5rem;
-    }
-  }
+@media (min-width: 750px) {
   .all-candidates-details {
     .entry {
+      .heading-details {
+        display: flex;
+        flex-wrap: wrap;
+
+        .container {
+          width: 33.333333%;
+          font-size: 16px;
+        }
+      }
+
+      .heading-details-2,
+      .heading-details-3 {
+        display: flex;
+        flex-wrap: wrap;
+
+        .container {
+          width: 50%;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 990px) {
+  .all-candidates-details {
+    .entry {
+      .heading-details {
+        display: flex;
+        flex-wrap: wrap;
+
+        .container {
+          width: 25%;
+          font-size: 16px;
+        }
+      }
+
+      .lower-headings {
+        display: flex;
+        div {
+          width: 100%;
+        }
+      }
+
+      .heading-details-2,
+      .heading-details-3 {
+        display: flex;
+        flex-wrap: wrap;
+
+        .container {
+          width: 50%;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1400px) {
+  .all-candidates-details {
+    .entry {
+      .heading-details {
+        display: flex;
+        flex-wrap: wrap;
+
+        .container {
+          width: 16.666666666%;
+          font-size: 16px;
+        }
+      }
     }
   }
 }

@@ -151,47 +151,39 @@ oReq.onload = function(e) {
 
   });
 
-
-
 }
 oReq.send();
 
 
 function sortDetails(sortType, cellNames, worksheet) {
 
-
-  let idArray = [];
-  let birthYear = [];
   let tempArray = [];
-  let ageArray = [];
   let temp;
   let tempCellName;
-  let tempCellName2;
-  let NewCellNames = cellNames;
 
   if(sortType === "id") { //according to ids   
     $("#sort-by").text("Id");
     $("#filter-by").text("Filter by");
 
     for(let i = 0; i < (cellNames.length - 1); i++) {
-      idArray.push(checkUndefined(worksheet[cellNames[i][0]]).v);
+      tempArray.push(checkUndefined(worksheet[cellNames[i][0]]).v);
     }
     
-    for (let a = 0; a < (idArray.length - 1); a++) {
-    for (let b = a + 1; b < idArray.length; b++) {
-      if (idArray[b] < idArray[a]) {
-        tempCellName = NewCellNames[a]; //shorting cell names on basis of id
-        NewCellNames[a] = NewCellNames[b];
-        NewCellNames[b] = tempCellName;
+    for (let a = 0; a < (tempArray.length - 1); a++) {
+    for (let b = a + 1; b < tempArray.length; b++) {
+      if (tempArray[b] < tempArray[a]) {
+        tempCellName = cellNames[a]; //shorting cell names on basis of id
+        cellNames[a] = cellNames[b];
+        cellNames[b] = tempCellName;
   
-        temp = idArray[a]; //shorting id 
-        idArray[a] = idArray[b]; 
-        idArray[b] = temp; 
+        temp = tempArray[a]; //shorting id 
+        tempArray[a] = tempArray[b]; 
+        tempArray[b] = temp; 
         }     
       }
     }
 
-    return NewCellNames;
+    return cellNames ;
 
   } else if(sortType === "male") { //showing only male
     $("#filter-by").text("Male");
@@ -218,45 +210,45 @@ function sortDetails(sortType, cellNames, worksheet) {
     $("#filter-by").text("Filter by");
     
     for(let i = 0; i < (cellNames.length - 1); i++) {
-      birthYear.push(checkUndefined(worksheet[cellNames[i][3]]).v);
+      tempArray.push(checkUndefined(worksheet[cellNames[i][3]]).v);
     }
 
-    for (let a = 0; a < (birthYear.length - 1); a++) {
-      for (let b = a + 1; b < birthYear.length; b++) {
-        if (birthYear[b] < birthYear[a]) {
-          tempCellName2 = NewCellNames[a]; //shorting cell names on basis of id
-          NewCellNames[a] = NewCellNames[b];
-          NewCellNames[b] = tempCellName2;
+    for (let a = 0; a < (tempArray.length - 1); a++) {
+      for (let b = a + 1; b < tempArray.length; b++) {
+        if (tempArray[b] < tempArray[a]) {
+          tempCellName = cellNames[a]; //shorting cell names on basis of id
+          cellNames[a] = cellNames[b];
+          cellNames[b] = tempCellName;
     
-          temp = birthYear[a]; //shorting id 
-          birthYear[a] = birthYear[b]; 
-          birthYear[b] = temp; 
+          temp = tempArray[a]; //shorting id 
+          tempArray[a] = tempArray[b]; 
+          tempArray[b] = temp; 
           }     
         }
       }
-    return NewCellNames;
+    return cellNames;
   } else if(sortType === "descending") { 
     $("#sort-by").text("Descending");
     $("#filter-by").text("Filter by");
     
     for(let i = 0; i < (cellNames.length - 1); i++) {
-      birthYear.push(checkUndefined(worksheet[cellNames[i][3]]).v);
+      tempArray.push(checkUndefined(worksheet[cellNames[i][3]]).v);
     }
 
-    for (let a = 0; a < (birthYear.length - 1); a++) {
-      for (let b = a + 1; b < birthYear.length; b++) {
-        if (birthYear[b] > birthYear[a]) {
-          tempCellName2 = NewCellNames[a]; //shorting cell names on basis of id
-          NewCellNames[a] = NewCellNames[b];
-          NewCellNames[b] = tempCellName2;
+    for (let a = 0; a < (tempArray.length - 1); a++) {
+      for (let b = a + 1; b < tempArray.length; b++) {
+        if (tempArray[b] > tempArray[a]) {
+          tempCellName = cellNames[a]; //shorting cell names on basis of id
+          cellNames[a] = cellNames[b];
+          cellNames[b] = tempCellName;
     
-          temp = birthYear[a]; //shorting id 
-          birthYear[a] = birthYear[b]; 
-          birthYear[b] = temp; 
+          temp = tempArray[a]; //shorting id 
+          tempArray[a] = tempArray[b]; 
+          tempArray[b] = temp; 
           }     
         }
       }
-    return NewCellNames;
+    return cellNames;
   } else if(sortType === "kutchi") { 
     $("#filter-by").text("Kutchi");
 
@@ -338,9 +330,6 @@ function addDetailsAll(topHeadingArray, headings, cellNames, worksheet) {
   //removing previous data
   $(".all-candidates-details").html(htmlToAppend);
 
-
-  
-
   //adding details
   for(let i = 0; i < (cellNames.length - 1); i++) {    
 
@@ -356,27 +345,27 @@ function addDetailsAll(topHeadingArray, headings, cellNames, worksheet) {
 
 
     //first heading 
-    htmlToAppend += "<section class='entry'> <div class='top-heading-1'>" + topHeadingArray[0] + "</div>";
+    htmlToAppend += "<section class='entry'> <div class='top-heading-1'>" + topHeadingArray[0] + "</div> <div class='heading-details " + backgroundColor + "'>";
     for(let j = 0; j < 12; j++) {
       htmlToAppend +=
-        "<div class='container " + backgroundColor + "'> <div class='heading-1'>" + headings[j] + "</div>" +
+        "<div class='container'> <div class='heading-1'>" + headings[j] + "</div>" +
         "<div class='details-1'>" + checkUndefined(worksheet[cellNames[i][j]]).v+ "</div></div><hr>";
     }
     //second heading
-    htmlToAppend += "<div class='top-heading-2'>" + topHeadingArray[1] + "</div>";
+    htmlToAppend += "</div><div class='lower-headings " + backgroundColor + "'> <div> <div class='top-heading-2'>" + topHeadingArray[1] + "</div> <div class='heading-details-2 " + backgroundColor + "'>";
     for(let j = 12; j < 14; j++) {
       htmlToAppend +=
-        "<div class='container " + backgroundColor +  "'><div class='heading-1'>" + headings[j] + "</div>" +
+        "<div class='container'><div class='heading-1'>" + headings[j] + "</div>" +
         "<div class='details-1'>" + checkUndefined(worksheet[cellNames[i][j]]).v+ "</div></div><hr>";
     }
     //third heading
-    htmlToAppend += "<div class='top-heading-3'>" + topHeadingArray[2] + "</div>";
+    htmlToAppend += "</div></div> <div> <div class='top-heading-3'>" + topHeadingArray[2] + "</div><div class='heading-details-3 " + backgroundColor + "'>";
     for(let j = 14; j < 16; j++) {
       htmlToAppend +=
-        "<div class='container " + backgroundColor + "'><div class='heading-1'>" + headings[j] + "</div>" +
+        "<div class='container'><div class='heading-1'>" + headings[j] + "</div>" +
         "<div class='details-1'>" + checkUndefined(worksheet[cellNames[i][j]]).v+ "</div></div><hr>";
     }
-    htmlToAppend += "</section>";
+    htmlToAppend += "</div></div></div> </section>";
 
     $(".all-candidates-details").append(htmlToAppend);
     htmlToAppend = ""; // Empltying Sting for next entry
