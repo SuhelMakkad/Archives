@@ -25,131 +25,230 @@ oReq.onload = function(e) {
   const worksheet = workbook.Sheets[first_sheet_name];
   const jsonData = XLSX.utils.sheet_to_json(worksheet,{raw:true});
   const numberOfRows = jsonData.length;
-
   const topHeadings =   [worksheet['B1'].v, worksheet['M1'].v, worksheet['O1'].v];
   const headings =   [worksheet['A2'].v, worksheet['B2'].v, worksheet['C2'].v, worksheet['D2'].v, worksheet['E2'].v, worksheet['F2'].v, worksheet['G2'].v, worksheet['H2'].v, worksheet['I2'].v, worksheet['J2'].v, worksheet['K2'].v, worksheet['L2'].v, worksheet['M2'].v, worksheet['N2'].v, worksheet['O2'].v, worksheet['P2'].v];
- 
-  
+
   //to get cell names
-  let cellNames = getDetails(numberOfRows, worksheet);
-
+  let cellNames = getDetails(numberOfRows, worksheet)
   $(".count p").html(cellNames.length);
-
 
   //adding details to html
   addDetailsAll(topHeadings, headings, cellNames, worksheet);
 
-  // //search 
-  // $(".search-input").change( (e) => {
-  //   let searchTerm = $(".search-input").val();
-  //   console.log(searchTerm);
-  //   search(searchTerm, cellNames, worksheet);
-  // });
+  let sortType1;
+  let sortType2;
+  let sortType3;
+
 
   //soring according to toggle
-
   $("li").click( (e) => {
+
     let sortBy = e.target.innerText.charAt(0) + e.target.innerText.charAt(1);
-
+    let li = e.target;
+    console.log(sortBy);
+    
+    
     if(sortBy === "Id") {
-    sortType = "id";
-    newCellNames =  sortDetails(sortType, cellNames, worksheet);
-    //adding details to html
-    addDetailsAll(topHeadings, headings, newCellNames, worksheet);
-    $(".count p").html(newCellNames.length);
-    cellNames = newCellNames;
 
-    }
+      $("li").removeClass("selected");
+      $(li).addClass("selected");
+      sortType = "id";
+      newCellNames =  sortDetails(sortType, cellNames, worksheet);
+      //adding details to html
+      addDetailsAll(topHeadings, headings, newCellNames, worksheet);
+      $(".count p").html(newCellNames.length);
+      cellNames = newCellNames;
 
-    if(sortBy === "Ma") {
-    sortType = "male";
-    newCellNames =  sortDetails(sortType, cellNames, worksheet);
-    //adding details to html
-    addDetailsAll(topHeadings, headings, newCellNames, worksheet);
-    $(".count p").html(newCellNames.length);
-    }
-
-    if(sortBy === "Fe") {
-    sortType = "female";
-    newCellNames =  sortDetails(sortType, cellNames, worksheet);
-    //adding details to html
-    addDetailsAll(topHeadings, headings, newCellNames, worksheet);
-    $(".count p").html(newCellNames.length);
     }
 
     if(sortBy === "As") {
-    sortType = "ascending";
-    newCellNames =  sortDetails(sortType, cellNames, worksheet);
-    //adding details to html
-    addDetailsAll(topHeadings, headings, newCellNames, worksheet);
-    $(".count p").html(newCellNames.length);
-    cellNames = newCellNames;
+
+      $("li").removeClass("selected");
+      $(li).addClass("selected");
+      sortType = "ascending";
+      newCellNames =  sortDetails(sortType, cellNames, worksheet);
+      //adding details to html
+      addDetailsAll(topHeadings, headings, newCellNames, worksheet);
+      $(".count p").html(newCellNames.length);
+      cellNames = newCellNames;
+
     }
 
-    if(sortBy === "De") {
-    sortType = "descending"; 
-    newCellNames =  sortDetails(sortType, cellNames, worksheet);
-    //adding details to html
-    addDetailsAll(topHeadings, headings, newCellNames, worksheet);
-    $(".count p").html(newCellNames.length);
-    cellNames = newCellNames;
+    else if(sortBy === "De") {
+
+      $("li").removeClass("selected");
+      $(li).addClass("selected");
+      sortType = "descending"; 
+      newCellNames =  sortDetails(sortType, cellNames, worksheet);
+      //adding details to html
+      addDetailsAll(topHeadings, headings, newCellNames, worksheet);
+      $(".count p").html(newCellNames.length);
+      cellNames = newCellNames;
+
     }
 
-    if(sortBy === "Ku") { 
-    sortType = "kutchi";
-    console.log(sortType);
-    newCellNames =  sortDetails(sortType, cellNames, worksheet);
-    //adding details to html
-    addDetailsAll(topHeadings, headings, newCellNames, worksheet);
-    $(".count p").html(newCellNames.length);
+    
+    if (sortBy === "Fi") {
+      $("form").addClass("form-active");
+      $("body").addClass("active");
     }
 
-    if(sortBy === "Ba") { 
-    sortType = "bavisi";
-    console.log(sortType);
-    newCellNames =  sortDetails(sortType, cellNames, worksheet);
-    //adding details to html
-    addDetailsAll(topHeadings, headings, newCellNames, worksheet);
-    $(".count p").html(newCellNames.length);
-    }
-
-    if(sortBy === "Ha") { 
-    sortType = "halai";
-    console.log(sortType);
-    newCellNames =  sortDetails(sortType, cellNames, worksheet);
-    //adding details to html
-    addDetailsAll(topHeadings, headings, newCellNames, worksheet);
-    $(".count p").html(newCellNames.length);
-    }
-
-    if(sortBy === "Un") { 
-    sortType = "unmarried";
-    console.log(sortType);
-    newCellNames =  sortDetails(sortType, cellNames, worksheet);
-    //adding details to html
-    addDetailsAll(topHeadings, headings, newCellNames, worksheet);
-    $(".count p").html(newCellNames.length);
-    }
-
-    if(sortBy === "Di") { 
-    sortType = "divorcee";
-    console.log(sortType);
-    newCellNames =  sortDetails(sortType, cellNames, worksheet);
-    //adding details to html
-    addDetailsAll(topHeadings, headings, newCellNames, worksheet);
-    $(".count p").html(newCellNames.length);
-    }
-
-    if(sortBy === "Wi") { 
-    sortType = "widow";
-    console.log(sortType);
-    newCellNames =  sortDetails(sortType, cellNames, worksheet);
-    //adding details to html
-    addDetailsAll(topHeadings, headings, newCellNames, worksheet);
-    $(".count p").html(newCellNames.length);
-    }
-
+    //
+    
   });
+
+  //for filter 
+
+  $("td").click( (e) => {
+      let td = e.target;
+      let text = td.innerText;
+      let finalCellNames = cellNames;
+
+      $(td).addClass("selected-cell");
+      if(text === "Male") {
+          sortType1 = "male";
+          $("#female").removeClass("selected-cell");
+      } else if (text === "Female") {
+          sortType1 = "female";
+          $("#male").removeClass("selected-cell");
+      }
+      if (text === "Kutchi") {
+          sortType2 = "kutchi";
+          $("#bavisi").removeClass("selected-cell");
+          $("#halai").removeClass("selected-cell");
+      }else if (text === "Bavisi") {
+          sortType2 = "bavisi";
+          $("#kutchi").removeClass("selected-cell");
+          $("#halai").removeClass("selected-cell");
+      }else if (text === "Halai") {
+          sortType2 = "halai";
+          $("#bavisi").removeClass("selected-cell");
+          $("#kutchi").removeClass("selected-cell");
+      }
+      if (text === "Unmarried") {
+          sortType3 = "unmarried";
+          console.log();
+          $("#divorcee").removeClass("selected-cell");
+          $("#widow").removeClass("selected-cell");
+      }else if (text === "Divorcee") {
+          sortType3 = "divorcee";
+          $("#unmarried").removeClass("selected-cell");
+          $("#widow").removeClass("selected-cell");
+      }else if (text === "Widow") {
+          sortType3 = "widow";
+          $("#unmarried").removeClass("selected-cell");
+          $("#divorcee").removeClass("selected-cell");
+      }
+
+      if (text === "Apply") {
+          console.log(sortType1, sortType2, sortType3);
+          $("form").removeClass("form-active");
+          $("body").removeClass("active");
+          //
+
+          if(sortType1 === "male") {
+
+            sortType = "male";
+            newCellNames =  sortDetails(sortType, finalCellNames, worksheet);
+            console.log(newCellNames);
+            finalCellNames = newCellNames;
+      
+          }
+      
+          else if(sortType1 === "female") {
+      
+            sortType = "female";
+            newCellNames =  sortDetails(sortType, finalCellNames, worksheet);
+            finalCellNames = newCellNames;
+      
+          } else {
+
+          }
+      
+          
+          if(sortType2 === "kutchi") { 
+      
+            sortType = "kutchi";
+            console.log(sortType);
+            newCellNames =  sortDetails(sortType, finalCellNames, worksheet);
+            finalCellNames = newCellNames;
+      
+          }
+      
+          else if(sortType2 === "bavisi") { 
+      
+            sortType = "bavisi";
+            console.log(sortType);
+            newCellNames =  sortDetails(sortType, finalCellNames, worksheet);
+            finalCellNames = newCellNames;
+      
+          }
+      
+          else if(sortType2 === "halai") { 
+      
+            sortType = "halai";
+            console.log(sortType);
+            newCellNames =  sortDetails(sortType, finalCellNames, worksheet);
+            console.log(newCellNames);
+            finalCellNames = newCellNames;
+            console.log("this", finalCellNames);
+      
+          }
+      
+          if(sortType3 === "unmarried") { 
+            
+            sortType = "unmarried";
+            console.log(sortType);
+            newCellNames =  sortDetails(sortType, finalCellNames, worksheet);
+            finalCellNames = newCellNames;
+      
+          }
+      
+          else if(sortType3 === "divorcee") { 
+      
+            sortType = "divorcee";
+            console.log(sortType);
+            newCellNames =  sortDetails(sortType, finalCellNames, worksheet);
+            finalCellNames = newCellNames;
+      
+          }
+      
+          else if(sortType3 === "widow") { 
+      
+            sortType = "widow";
+            console.log(sortType);
+            newCellNames =  sortDetails(sortType, finalCellNames, worksheet);
+            console.log(newCellNames);
+          
+            finalCellNames = newCellNames;
+      
+          }
+
+          
+            //adding details to html
+            addDetailsAll(topHeadings, headings, finalCellNames, worksheet);
+            $(".count p").html(finalCellNames.length);
+            console.log(finalCellNames);
+
+
+          //
+      } else if (text === "Reset") {
+          $("td").removeClass("selected-cell");
+          sortType1 = undefined;
+          sortType2 = undefined;
+          sortType3 = undefined;
+      } else if (text === "close") {
+        $("form").removeClass("form-active");
+        $("body").removeClass("active");
+      }
+  
+      
+  } );
+
+
+
+ console.log(sortDetails("id", cellNames, worksheet)); 
+
 
 }
 oReq.send();
@@ -159,11 +258,10 @@ function sortDetails(sortType, cellNames, worksheet) {
 
   let tempArray = [];
   let temp;
-  let tempCellName;
+  let tempCellName; 
 
-  if(sortType === "id") { //according to ids   
-    $("#sort-by").text("Id");
-    $("#filter-by").text("Filter by");
+  if(sortType === "id") { //according to ids  
+    console.log("helo");
 
     for(let i = 0; i < (cellNames.length - 1); i++) {
       tempArray.push(checkUndefined(worksheet[cellNames[i][0]]).v);
@@ -185,51 +283,7 @@ function sortDetails(sortType, cellNames, worksheet) {
 
     return cellNames ;
 
-  } else if(sortType === "male") { //showing only male
-    $("#filter-by").text("Male");
-    
-    for(let i = 0; i < (cellNames.length - 1); i++) {
-      let gender = checkUndefined(worksheet[cellNames[i][1]]).v.charAt(0);
-      if( gender == "M") {
-        tempArray.push( cellNames[i] );
-      }
-    }
-    return tempArray;
-  } else if(sortType === "female") { 
-    $("#filter-by").text("Female");
-
-    for(let i = 0; i < (cellNames.length - 1); i++) {
-      let gender = checkUndefined(worksheet[cellNames[i][1]]).v.charAt(0);
-      if( gender == "F") {
-        tempArray.push( cellNames[i] );
-      }
-    }
-    return tempArray;
-  } else if(sortType === "ascending") { 
-    $("#sort-by").text("Ascending");
-    $("#filter-by").text("Filter by");
-    
-    for(let i = 0; i < (cellNames.length - 1); i++) {
-      tempArray.push(checkUndefined(worksheet[cellNames[i][3]]).v);
-    }
-
-    for (let a = 0; a < (tempArray.length - 1); a++) {
-      for (let b = a + 1; b < tempArray.length; b++) {
-        if (tempArray[b] < tempArray[a]) {
-          tempCellName = cellNames[a]; //shorting cell names on basis of id
-          cellNames[a] = cellNames[b];
-          cellNames[b] = tempCellName;
-    
-          temp = tempArray[a]; //shorting id 
-          tempArray[a] = tempArray[b]; 
-          tempArray[b] = temp; 
-          }     
-        }
-      }
-    return cellNames;
   } else if(sortType === "descending") { 
-    $("#sort-by").text("Descending");
-    $("#filter-by").text("Filter by");
     
     for(let i = 0; i < (cellNames.length - 1); i++) {
       tempArray.push(checkUndefined(worksheet[cellNames[i][3]]).v);
@@ -249,8 +303,51 @@ function sortDetails(sortType, cellNames, worksheet) {
         }
       }
     return cellNames;
-  } else if(sortType === "kutchi") { 
-    $("#filter-by").text("Kutchi");
+  } 
+  
+  else if(sortType === "ascending") { 
+    
+    for(let i = 0; i < (cellNames.length - 1); i++) {
+      tempArray.push(checkUndefined(worksheet[cellNames[i][3]]).v);
+    }
+
+    for (let a = 0; a < (tempArray.length - 1); a++) {
+      for (let b = a + 1; b < tempArray.length; b++) {
+        if (tempArray[b] < tempArray[a]) {
+          tempCellName = cellNames[a]; //shorting cell names on basis of id
+          cellNames[a] = cellNames[b];
+          cellNames[b] = tempCellName;
+    
+          temp = tempArray[a]; //shorting id 
+          tempArray[a] = tempArray[b]; 
+          tempArray[b] = temp; 
+          }     
+        }
+      }
+    return cellNames;
+  } 
+  
+  else if(sortType === "female") { 
+
+    for(let i = 0; i < (cellNames.length - 1); i++) {
+      let gender = checkUndefined(worksheet[cellNames[i][1]]).v.charAt(0);
+      if( gender == "F") {
+        tempArray.push( cellNames[i] );
+      }
+    }
+    return tempArray;
+  } else if(sortType === "male") { //showing only male
+    
+    for(let i = 0; i < (cellNames.length - 1); i++) {
+      let gender = checkUndefined(worksheet[cellNames[i][1]]).v.charAt(0);
+      if( gender == "M") {
+        tempArray.push( cellNames[i] );
+      }
+    }
+    return tempArray;
+  } 
+  
+  else if(sortType === "kutchi") { 
 
     for(let i = 0; i < (cellNames.length - 1); i++) {
       let type = checkUndefined(worksheet[cellNames[i][2]]).v.charAt(0);
@@ -259,8 +356,8 @@ function sortDetails(sortType, cellNames, worksheet) {
       }
     }
     return tempArray;
-  } else if(sortType === "bavisi") {  
-    $("#filter-by").text("Bavisi");
+  } 
+  else if(sortType === "bavisi") {  
 
     for(let i = 0; i < (cellNames.length - 1); i++) {
       let type = checkUndefined(worksheet[cellNames[i][2]]).v.charAt(0) + checkUndefined(worksheet[cellNames[i][2]]).v.charAt(1);
@@ -271,8 +368,8 @@ function sortDetails(sortType, cellNames, worksheet) {
       }
     }
     return tempArray;
-  } else if(sortType === "halai") {  
-    $("#filter-by").text("Halai");
+  } 
+  else if(sortType === "halai") {  
 
     for(let i = 0; i < (cellNames.length - 1); i++) {
       let type = checkUndefined(worksheet[cellNames[i][2]]).v.charAt(0);
@@ -281,8 +378,9 @@ function sortDetails(sortType, cellNames, worksheet) {
       }
     }
     return tempArray;
-  } else if(sortType === "unmarried") { 
-    $("#filter-by").text("Unmarried");
+  } 
+  
+  else if(sortType === "unmarried") { 
 
     for(let i = 0; i < (cellNames.length - 1); i++) {
       let status = checkUndefined(worksheet[cellNames[i][4]]).v.charAt(0);
@@ -291,8 +389,9 @@ function sortDetails(sortType, cellNames, worksheet) {
       }
     }
     return tempArray;
-  } else if(sortType === "divorcee") { 
-    $("#filter-by").text("Divorcee");
+  } 
+  
+  else if(sortType === "divorcee") { 
 
     for(let i = 0; i < (cellNames.length - 1); i++) {
       let status = checkUndefined(worksheet[cellNames[i][4]]).v.charAt(0);
@@ -301,8 +400,9 @@ function sortDetails(sortType, cellNames, worksheet) {
       }
     }
     return tempArray;
-  } else if(sortType === "widow") { 
-    $("#filter-by").text("Widow");
+  } 
+  
+  else if(sortType === "widow") { 
 
     for(let i = 0; i < (cellNames.length - 1); i++) {
       let status = checkUndefined(worksheet[cellNames[i][4]]).v.charAt(0);
@@ -315,6 +415,8 @@ function sortDetails(sortType, cellNames, worksheet) {
 
     return console.log("Somting Wemt wrong during sorting");;
   }
+
+  
 
 }
 
@@ -330,8 +432,14 @@ function addDetailsAll(topHeadingArray, headings, cellNames, worksheet) {
   //removing previous data
   $(".all-candidates-details").html(htmlToAppend);
 
+  let length = cellNames.length - 1;
+
   //adding details
-  for(let i = 0; i < (cellNames.length - 1); i++) {    
+  if(length == 0) {
+    length = 1;
+  }
+
+  for(let i = 0; i < length; i++) {    
 
     //setting background color
     let gender = checkUndefined(worksheet[cellNames[i][1]]).v.charAt(0);

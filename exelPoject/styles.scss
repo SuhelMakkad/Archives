@@ -12,6 +12,68 @@ body {
   color: snow;
 }
 
+//for table
+
+table {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: auto;
+  border-spacing: 0px;
+  background-color: rgb(70, 142, 151);
+  font-size: 1.2rem;
+}
+td {
+  cursor: pointer;
+}
+.form {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  backdrop-filter: blur(5px);
+  transform: translateY(-1000px);
+  transition: 0.3s transform;
+}
+.active {
+  overflow: hidden;
+}
+.form-active {
+  transform: translateY(0);
+}
+#close {
+  color: rgb(255, 0, 0);
+}
+#apply {
+  color: rgb(7, 255, 7);
+}
+th {
+  text-align: left;
+  background-color: rgb(25, 98, 100);
+  font-weight: 500;
+}
+th,
+td {
+  padding: 15px;
+  border-bottom: 1pt solid #a3a5bb;
+}
+td {
+  transition: 0.5s color;
+}
+.selected-cell {
+  color: rgb(43, 255, 0);
+}
+
+#filter-by {
+  a {
+    text-decoration: none;
+    color: white;
+  }
+}
+
 .navbar {
   background-color: rgb(8, 100, 96);
   position: -webkit-sticky; /* Safari */
@@ -74,6 +136,18 @@ body {
     top: 65%;
   }
 
+  .selected {
+    &::before {
+      content: "";
+      width: 5px;
+      height: 35px;
+      background-color: rgb(79, 206, 199);
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
   .main-list {
     padding: 0.25rem 0.5rem;
     position: relative;
@@ -90,9 +164,13 @@ body {
         width: 100%;
         background-color: rgb(56, 86, 92);
 
+        #first-id {
+          padding: 0;
+          height: 100%;
+        }
+
         li {
           padding: 0.25rem 0.75rem;
-
           display: none;
           position: relative;
 
@@ -120,7 +198,6 @@ body {
 
           &:hover > .sub-sub-list li {
             display: block;
-            // background-color: rgb(99, 156, 165);
           }
         }
       }
@@ -138,37 +215,6 @@ body {
 .filter-dropdown {
   display: flex;
 }
-
-//search box
-// .search-dropdown {
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-// }
-
-// .search-box {
-//   margin-right: 1.5rem;
-//   margin-bottom: 1rem;
-//   padding: 0 0.5rem;
-//   background-color: white;
-//   height: 100%;
-
-//   .search-input {
-//     width: 100px;
-//     outline: none;
-//     border: none;
-//     height: 30px;
-//     padding-right: 0.5rem;
-
-//     &:focus {
-//       outline: none;
-//     }
-//   }
-
-//   i {
-//     color: rgb(99, 156, 165);
-//   }
-// }
 
 .count {
   color: rgb(80, 129, 136);
