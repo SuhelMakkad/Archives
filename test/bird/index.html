@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
+        <image  id="bird" href="SVG/Birds/bird_1.svg"></image>
+
+        <animate
+            id = "birdAnim"
+            href="#bird"
+            attributeType="auto"
+            attributeName="href"
+            values = "SVG/Birds/bird_1.svg;SVG/Birds/bird_2.svg;SVG/Birds/bird_3.svg;SVG/Birds/bird_4.svg;"
+            dur="0.8s"
+            begin = "indefinite"
+            repeatCount="indefinite"
+        />
+    </svg>
+    <!-- <object data="bird_1.svg" type="image/svg+xml">
+        </object> -->
+
+       <script>
+           document.getElementById("birdAnim").beginElement()
+       </script>
+</body>
+</html>
